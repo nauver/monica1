@@ -1,1 +1,399 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A multi-layer, accessible interactive story based on the EU Annual Report on the State of Regions and Cities 2026."><meta name="theme-color" content="#063947"><title>Built locally | State of regions and cities 2026</title><link rel="stylesheet" href="styles-v2.css"></head><body data-audience="citizen"><a class="skip" href="#main">Skip to main content</a><header class="mast"><a class="brand" href="#top" aria-label="Back to top"><span aria-hidden="true">◫</span> State of regions and cities 2026</a><nav aria-label="Primary"><a href="#pulse">Pulse</a><a href="#stories">Stories</a><a href="#themes">Themes</a><a href="#thermometer">Thermometer</a><a href="#evidence">Evidence</a></nav><button id="menu" class="icon" aria-expanded="false" aria-controls="journey">Reading mode</button></header><aside id="journey" class="journey" aria-label="Choose a reading mode"><p><strong>Choose your depth</strong></p><div role="group" aria-label="Audience"><button data-audience="citizen" class="selected">1-minute story</button><button data-audience="colleague">CoR briefing</button><button data-audience="press">Press & policy desk</button></div><button id="motion" aria-pressed="false">Reduce movement</button><button id="contrast" aria-pressed="false">High contrast</button></aside><main id="main"><section id="top" class="hero"><div class="rings" aria-hidden="true"></div><div class="hero-copy"><p class="kicker">EU Annual Report 2026</p><h1>Europe’s future is built <em>locally.</em></h1><p class="hero-lead">A visual journey through the pressures facing Europe’s regions and cities, and the places already turning policy into results.</p><div class="hero-actions"><a class="primary" href="#pulse">Start with the big picture</a><button id="randomStory">Take me to a local story</button></div></div><div class="hero-panel" aria-label="Central message"><p>“A Europe capable of competing in the world cannot be built by weakening the connections between its places.”</p><span>Condensed from the report foreword</span></div></section><section id="pulse" class="section pulse"><header class="section-head"><div><p class="kicker">Europe in ten signals</p><h2>Scroll the evidence</h2></div><p class="layer colleague press">Each indicator opens into sectoral context, territorial implications and source-page guidance.</p></header><div id="signalRail" class="signal-rail" tabindex="0" aria-label="Key statistics"></div></section><section class="manifesto"><p>Competitiveness happens in places.</p><p>Preparedness starts on the ground.</p><p>Trust grows through proximity.</p></section><section id="stories" class="section"><header class="section-head"><div><p class="kicker">People, places, results</p><h2>The local story atlas</h2></div><p>Explore real interventions from across Europe. Search by place, topic or result.</p></header><div class="filters"><label>Search stories<input id="storySearch" type="search" placeholder="Try housing, Poland or energy"></label><label>Theme<select id="storyTheme"><option value="all">All themes</option></select></label><button id="clearStories">Clear filters</button></div><p id="storyCount" aria-live="polite"></p><div id="storyGrid" class="story-grid"></div></section><section id="themes" class="section dark"><header class="section-head"><div><p class="kicker">Ten interconnected issues</p><h2>From pressure to response</h2></div><p>Choose a subject to reveal its headline evidence, local dimension and policy asks.</p></header><div class="theme-layout"><div id="themeTabs" role="tablist" aria-label="Report themes"></div><article id="themePanel" class="theme-panel" role="tabpanel" tabindex="0"></article></div></section><section id="thermometer" class="section thermo"><header class="section-head"><div><p class="kicker">Regional Thermometer</p><h2>Growth alone does not tell the story</h2></div><p>The report compares seven indicators across 244 NUTS 2 regions and excludes missing values from progress calculations.</p></header><div class="thermo-grid"><div class="gauge" aria-label="Only 12 percent of regions improved in six of seven indicators"><div class="gauge-core"><strong>12%</strong><span>improved in six of seven indicators</span></div></div><div class="thermo-copy"><ul><li><strong>1 in 2</strong> regions experienced increased poverty or social exclusion.</li><li><strong>More than half</strong> saw labour-market conditions deteriorate.</li><li><strong>1 in 3</strong> did not reduce greenhouse-gas emissions.</li><li><strong>95%</strong> recorded rising old-age pressure.</li></ul><details class="press"><summary>Methodological note for specialist use</summary><p>The seven indicators are GDP per capita in PPS, unemployment, poverty or social exclusion, inability to face unexpected expenses, emissions by sector, old-age dependency and the JRC Vulnerability Index. Comparisons use the two latest available years for each indicator.</p></details></div></div></section><section class="section choices"><header class="section-head"><div><p class="kicker">The policy choice</p><h2>What kind of Europe?</h2></div></header><div class="choice-grid"><article><span>Centralised</span><h3>Decisions move faster</h3><p>But territorial knowledge, partnership and ownership can be weakened.</p></article><div class="versus" aria-hidden="true">or</div><article><span>Place-based</span><h3>More places contribute</h3><p>Investment, knowledge, skills and opportunity can circulate across territories.</p></article></div><div class="asks"><h3>Five principles running through the report</h3><ol><li>Preserve cohesion policy for all regions.</li><li>Legally anchor partnership and multilevel governance.</li><li>Apply a “do no harm to cohesion” principle.</li><li>Use place-based territorial instruments.</li><li>Integrate territorial impact assessments and regional checks.</li></ol></div></section><section id="evidence" class="section evidence"><header class="section-head"><div><p class="kicker">Press and policy desk</p><h2>Evidence you can reuse responsibly</h2></div><p class="layer press">Expand a dossier for framing notes, caveats and source pages.</p></header><div id="dossiers"></div><div class="source-box"><h3>Primary source</h3><p><cite>The state of regions and cities: EU annual report 2026</cite>, European Committee of the Regions, Brussels, October 2026. CdR_0463/10-2026. ISBN 978-92-895-4140-4. DOI 10.2863/1166719.</p><p>The report states that reuse is authorised under CC BY 4.0 unless otherwise noted. Separate permission may be required for third-party photographs, maps and other works. This prototype uses original CSS visuals and does not reproduce third-party photography.</p></div></section></main><footer><p><strong>Strong regions. Strong cities. Strong Europe.</strong></p><p>Interactive editorial prototype based on the EU Annual Report 2026.</p><a href="#top">Back to top</a></footer><script src="data-v2.js"></script><script src="app-v2.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Built locally — an accessible, interactive visual story based on the European Committee of the Regions' EU Annual Report on the State of Regions and Cities 2026.">
+  <meta name="theme-color" content="#063947">
+  <meta name="color-scheme" content="light">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Built locally | State of regions and cities 2026">
+  <meta property="og:description" content="Twenty places, ten signals, one question: what kind of Europe do we want to build?">
+  <meta property="og:image" content="assets/og.svg">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Built locally | State of regions and cities 2026">
+  <meta name="twitter:description" content="Twenty places, ten signals, one question: what kind of Europe do we want to build?">
+  <meta name="twitter:image" content="assets/og.svg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate" hreflang="en" href="?lang=en">
+  <link rel="alternate" hreflang="fr" href="?lang=fr">
+
+  <title>Built locally | State of regions and cities 2026</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- JSON-LD structured data: Report + Dataset -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Report",
+        "name": "The state of regions and cities: EU annual report 2026",
+        "author": { "@type": "Organization", "name": "European Committee of the Regions" },
+        "datePublished": "2026-10",
+        "inLanguage": ["en","fr"],
+        "isbn": "978-92-895-4140-4",
+        "identifier": "10.2863/1166719",
+        "license": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "@type": "Dataset",
+        "name": "Local story atlas — 20 interventions across EU regions",
+        "description": "Twenty documented local actions by cities and regions, with place, cluster, headline result and source page.",
+        "creator": { "@type": "Organization", "name": "European Committee of the Regions" },
+        "license": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body data-audience="citizen" data-lang="en" data-mix="60">
+
+  <a class="skip" href="#main" data-i18n="skip">Skip to main content</a>
+
+  <!-- Reading-progress bar -->
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <header class="mast" role="banner">
+    <a class="brand" href="#top" aria-label="Back to top">
+      <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
+        <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="16" cy="16" r="7"  fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="16" cy="16" r="2"  fill="currentColor"/>
+      </svg>
+      <span><strong>Built locally</strong><em>State of regions and cities 2026</em></span>
+    </a>
+
+    <nav aria-label="Primary">
+      <a href="#pulse"   data-i18n="nav.pulse">Signals</a>
+      <a href="#map"     data-i18n="nav.map">Map</a>
+      <a href="#stories" data-i18n="nav.stories">Stories</a>
+      <a href="#themes"  data-i18n="nav.themes">Themes</a>
+      <a href="#thermometer" data-i18n="nav.thermo">Thermometer</a>
+      <a href="#choice"  data-i18n="nav.choice">Choice</a>
+      <a href="#evidence" data-i18n="nav.evidence">Evidence</a>
+    </nav>
+
+    <label class="langPick" aria-label="Language">
+      <span data-i18n="lang.label">Language</span>
+      <select id="langSelect">
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+      </select>
+    </label>
+
+    <button id="menu" class="icon" aria-expanded="false" aria-controls="journey">
+      <span data-i18n="header.readingMode">Reading mode</span>
+    </button>
+  </header>
+
+  <aside id="journey" class="journey" aria-label="Choose a reading mode" hidden>
+    <p><strong data-i18n="reading.title">Choose your depth</strong></p>
+    <div role="group" aria-label="Audience">
+      <button data-audience="citizen"   class="selected" data-i18n="reading.citizen">1-minute story</button>
+      <button data-audience="colleague" data-i18n="reading.colleague">CoR briefing</button>
+      <button data-audience="press"     data-i18n="reading.press">Press & policy desk</button>
+    </div>
+    <button id="motion"   aria-pressed="false" data-i18n="a11y.motion">Reduce movement</button>
+    <button id="contrast" aria-pressed="false" data-i18n="a11y.contrast">High contrast</button>
+  </aside>
+
+  <main id="main">
+
+    <!-- ========================================================= HERO ===== -->
+    <section id="top" class="hero">
+      <div class="rings" aria-hidden="true">
+        <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span><span class="ring dot"></span>
+      </div>
+
+      <div class="hero-copy">
+        <p class="kicker" data-i18n="hero.kicker">EU Annual Report 2026</p>
+        <h1>
+          <span data-i18n="hero.title.a">Europe’s future is built</span>
+          <em data-i18n="hero.title.b">locally.</em>
+        </h1>
+        <p class="hero-lead" data-i18n="hero.lead">A visual journey through the pressures facing Europe’s regions and cities, and the places already turning policy into results.</p>
+        <div class="hero-actions">
+          <a class="primary" href="#pulse" data-i18n="hero.cta.primary">Start with the big picture</a>
+          <button id="randomStory" data-i18n="hero.cta.random">Take me to a local story</button>
+          <a class="ghost layer colleague press" href="https://cor.europa.eu/" target="_blank" rel="noopener" data-i18n="hero.cta.pdf">Download the full report</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="Central message">
+        <p data-i18n="hero.quote">“A Europe capable of competing in the world cannot be built by weakening the connections between its places.”</p>
+        <span data-i18n="hero.quote.src">Condensed from the report foreword</span>
+      </aside>
+    </section>
+
+    <!-- ====================================================== PULSE ====== -->
+    <section id="pulse" class="section pulse">
+      <header class="section-head">
+        <div>
+          <p class="kicker" data-i18n="pulse.kicker">Europe in ten signals</p>
+          <h2 data-i18n="pulse.title">Scroll the evidence</h2>
+        </div>
+        <p class="layer colleague press" data-i18n="pulse.lead">Each indicator opens into sectoral context, territorial implications and source-page guidance.</p>
+      </header>
+
+      <div id="signalRail" class="signal-rail" tabindex="0" aria-label="Key statistics"></div>
+    </section>
+
+    <!-- ==================================================== MANIFESTO ==== -->
+    <section class="manifesto" aria-hidden="false">
+      <p data-i18n="manifesto.1">Competitiveness happens in places.</p>
+      <p data-i18n="manifesto.2">Preparedness starts on the ground.</p>
+      <p data-i18n="manifesto.3">Trust grows through proximity.</p>
+    </section>
+
+    <!-- ======================================================== MAP ====== -->
+    <section id="map" class="section map-section">
+      <header class="section-head">
+        <div>
+          <p class="kicker" data-i18n="map.kicker">Twenty places, one Europe</p>
+          <h2 data-i18n="map.title">The map of what works</h2>
+        </div>
+        <p data-i18n="map.lead">Every pin is a documented local intervention. Choose a cluster, hover a region, open a story.</p>
+      </header>
+
+      <div class="map-wrap">
+        <div class="cluster-chips" id="mapChips" role="radiogroup" aria-label="Filter by cluster"></div>
+
+        <div class="map-stage">
+          <svg id="europeMap" viewBox="0 0 1000 720" role="img" aria-labelledby="mapTitle mapDesc">
+            <title id="mapTitle">Interactive map of 20 local stories across Europe</title>
+            <desc id="mapDesc">Pins mark cities and regions with documented local interventions. Each pin is coloured by thematic cluster and can be opened to view the full story.</desc>
+
+            <defs>
+              <radialGradient id="pinGlow">
+                <stop offset="0%" stop-color="currentColor" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="softShadow"><feGaussianBlur stdDeviation="4" in="SourceAlpha"/><feOffset dy="2"/><feComponentTransfer><feFuncA type="linear" slope="0.25"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+
+            <!-- Stylised Europe backdrop (simplified silhouettes) -->
+            <g class="eu-land" filter="url(#softShadow)">
+              <!-- Iberia -->
+              <path d="M165,470 Q140,440 155,400 Q180,370 230,375 Q275,370 305,395 Q330,420 320,460 Q300,500 260,515 Q210,520 185,500 Z"/>
+              <!-- France -->
+              <path d="M310,340 Q295,310 320,290 Q360,275 410,285 Q450,295 465,330 Q475,370 455,410 Q420,440 370,440 Q335,430 315,395 Z"/>
+              <!-- UK -->
+              <path d="M275,210 Q265,180 285,160 Q310,150 325,175 Q335,205 325,245 Q310,280 285,275 Q265,250 275,210 Z"/>
+              <!-- Ireland -->
+              <path d="M220,220 Q210,200 225,185 Q250,180 258,205 Q260,235 240,245 Q220,240 220,220 Z"/>
+              <!-- Benelux -->
+              <path d="M405,275 Q425,260 445,275 Q450,295 435,305 Q415,305 405,290 Z"/>
+              <!-- Germany + Denmark base -->
+              <path d="M450,245 Q470,215 500,215 Q540,220 555,255 Q560,295 540,320 Q500,335 475,320 Q455,295 450,270 Z"/>
+              <!-- Italy -->
+              <path d="M490,370 Q480,350 495,335 Q515,340 525,365 Q545,400 560,440 Q575,490 590,520 Q585,545 565,540 Q540,510 520,470 Q500,430 490,395 Z"/>
+              <!-- Scandinavia -->
+              <path d="M510,80 Q490,55 520,45 Q560,45 580,80 Q605,135 600,180 Q585,220 565,210 Q540,180 525,145 Q510,110 510,80 Z"/>
+              <!-- Poland + CZ + SK + Baltics -->
+              <path d="M565,235 Q600,215 650,220 Q700,230 725,255 Q720,295 695,315 Q650,325 610,315 Q575,295 565,265 Z"/>
+              <!-- Hungary + Balkans -->
+              <path d="M580,335 Q615,320 660,330 Q695,345 695,375 Q680,415 645,420 Q610,415 585,395 Z"/>
+              <!-- Greece -->
+              <path d="M660,450 Q680,440 710,445 Q720,470 700,495 Q675,500 660,480 Z"/>
+              <!-- Romania + Bulgaria -->
+              <path d="M700,355 Q740,345 790,360 Q805,390 785,415 Q740,420 710,405 Q695,385 700,370 Z"/>
+            </g>
+
+            <!-- Pins rendered by JS -->
+            <g id="pinLayer" aria-label="Story pins"></g>
+          </svg>
+
+          <div id="mapTip" class="map-tip" role="tooltip" hidden></div>
+        </div>
+
+        <p class="map-hint" data-i18n="map.hint">Use the Tab key to move between pins.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================== STORIES ===== -->
+    <section id="stories" class="section">
+      <header class="section-head">
+        <div>
+          <p class="kicker" data-i18n="stories.kicker">People, places, results</p>
+          <h2 data-i18n="stories.title">The local story atlas</h2>
+        </div>
+        <p data-i18n="stories.lead">Explore real interventions from across Europe. Search by place, topic or result.</p>
+      </header>
+
+      <div class="filters">
+        <label class="search-field">
+          <span data-i18n="stories.search">Search stories</span>
+          <input id="storySearch" type="search" placeholder="Try housing, Poland or energy" data-i18n-ph="stories.searchPh" autocomplete="off">
+        </label>
+        <div class="chips" id="storyChips" role="radiogroup" aria-label="Filter by cluster"></div>
+        <button id="clearStories" class="ghost" data-i18n="stories.clear">Clear filters</button>
+      </div>
+
+      <p id="storyCount" aria-live="polite"></p>
+      <div id="storyGrid" class="story-grid"></div>
+    </section>
+
+    <!-- ====================================================== THEMES ===== -->
+    <section id="themes" class="section dark">
+      <header class="section-head">
+        <div>
+          <p class="kicker" data-i18n="themes.kicker">Ten interconnected issues</p>
+          <h2 data-i18n="themes.title">From pressure to response</h2>
+        </div>
+        <p data-i18n="themes.lead">Choose a subject to reveal its headline evidence, local dimension and policy asks.</p>
+      </header>
+
+      <div class="theme-layout">
+        <div id="themeTabs" role="tablist" aria-label="Report themes" aria-orientation="vertical"></div>
+        <article id="themePanel" class="theme-panel" role="tabpanel" tabindex="0" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <!-- =================================================== THERMOMETER === -->
+    <section id="thermometer" class="section thermo">
+      <header class="section-head">
+        <div>
+          <p class="kicker" data-i18n="thermo.kicker">Regional Thermometer</p>
+          <h2 data-i18n="thermo.title">Growth alone does not tell the story</h2>
+        </div>
+        <p data-i18n="thermo.lead">The report compares seven indicators across 244 NUTS 2 regions and excludes missing values from progress calculations.</p>
+      </header>
+
+      <div class="thermo-grid">
+        <div class="headline-gauge" aria-label="Only 12 percent of regions improved in six of seven indicators">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="86" fill="none" stroke="var(--line)" stroke-width="18"/>
+            <circle id="headRing" cx="100" cy="100" r="86" fill="none" stroke="var(--orange)" stroke-width="18"
+                    stroke-dasharray="540" stroke-dashoffset="540" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+          </svg>
+          <div class="gauge-core">
+            <strong>12%</strong>
+            <span data-i18n="thermo.headline">improved in six of seven indicators</span>
+          </div>
+        </div>
+
+        <div id="miniGauges" class="mini-gauges" aria-label="Seven indicators"></div>
+      </div>
+
+      <details class="methodo press">
+        <summary data-i18n="thermo.note">Methodological note for specialist use</summary>
+        <p data-i18n="thermo.noteBody">The seven indicators are GDP per capita in PPS, unemployment, poverty or social exclusion, inability to face unexpected expenses, emissions by sector, old-age dependency and the JRC Vulnerability Index. Comparisons use the two latest available years for each indicator.</p>
+      </details>
+    </section>
+
+    <!-- ======================================================= CHOICE ==== -->
+    <section id="choice" class="section choices">
+      <header class="section-head">
+        <div>
+          <p class="kicker" data-i18n="choice.kicker">The policy choice</p>
+          <h2 data-i18n="choice.title">What kind of Europe?</h2>
+        </div>
+        <p data-i18n="choice.lead">Drag the slider — or tap a side — to see how one logic reshapes the whole page.</p>
+      </header>
+
+      <div class="mix">
+        <article class="mix-card side-c">
+          <span data-i18n="choice.centralised">Centralised</span>
+          <p data-i18n="choice.centralised.body">Decisions move faster. But territorial knowledge, partnership and ownership can be weakened.</p>
+        </article>
+
+        <div class="mix-slider">
+          <input id="mixSlider" type="range" min="0" max="100" value="60" aria-label="Policy mix between centralised and place-based">
+          <div class="mix-labels">
+            <span data-i18n="choice.centralised">Centralised</span>
+            <span class="mix-value"><strong id="mixValue">60</strong>% place-based</span>
+            <span data-i18n="choice.placebased">Place-based</span>
+          </div>
+          <div class="mix-fill"><span id="mixFill"></span></div>
+        </div>
+
+        <article class="mix-card side-p">
+          <span data-i18n="choice.placebased">Place-based</span>
+          <p data-i18n="choice.placebased.body">More places contribute. Investment, knowledge, skills and opportunity circulate across territories.</p>
+        </article>
+      </div>
+
+      <div class="asks">
+        <h3 data-i18n="choice.principles">Five principles running through the report</h3>
+        <ol>
+          <li data-i18n="choice.p1">Preserve cohesion policy for all regions.</li>
+          <li data-i18n="choice.p2">Legally anchor partnership and multilevel governance.</li>
+          <li data-i18n="choice.p3">Apply a “do no harm to cohesion” principle.</li>
+          <li data-i18n="choice.p4">Use place-based territorial instruments.</li>
+          <li data-i18n="choice.p5">Integrate territorial impact assessments and regional checks.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================================================== EVIDENCE ==== -->
+    <section id="evidence" class="section evidence">
+      <header class="section-head">
+        <div>
+          <p class="kicker" data-i18n="evidence.kicker">Press and policy desk</p>
+          <h2 data-i18n="evidence.title">Evidence you can reuse responsibly</h2>
+        </div>
+        <p class="layer press" data-i18n="evidence.lead">Expand a dossier for framing notes, caveats and source pages.</p>
+      </header>
+
+      <div id="dossiers"></div>
+
+      <div class="source-box">
+        <h3 data-i18n="source.title">Primary source</h3>
+        <p><cite>The state of regions and cities: EU annual report 2026</cite>, European Committee of the Regions, Brussels, October 2026. CdR_0463/10-2026. ISBN 978-92-895-4140-4. DOI 10.2863/1166719.</p>
+        <p data-i18n="source.license">The report states that reuse is authorised under CC BY 4.0 unless otherwise noted. Separate permission may be required for third-party photographs, maps and other works. This prototype uses original CSS visuals and does not reproduce third-party photography.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Story detail modal -->
+  <dialog id="storyModal" class="story-modal" aria-labelledby="modalTitle">
+    <article>
+      <header>
+        <span class="modal-cluster" id="modalCluster"></span>
+        <button class="icon close" id="modalClose" aria-label="Close">✕</button>
+      </header>
+      <h2 id="modalTitle"></h2>
+      <p class="place" id="modalPlace"></p>
+
+      <div class="modal-metric" id="modalMetric"></div>
+
+      <div class="modal-flow">
+        <div><b data-i18n="stories.challenge">Challenge</b><p id="modalChallenge"></p></div>
+        <div><b data-i18n="stories.action">Local action</b><p id="modalAction"></p></div>
+        <div><b data-i18n="stories.result">Result</b><p id="modalResult"></p></div>
+      </div>
+
+      <footer>
+        <small><span data-i18n="stories.page">Report page</span> <span id="modalPage"></span></small>
+        <div class="modal-actions">
+          <button class="ghost" id="modalCite" data-i18n="stories.cite">Copy citation</button>
+          <button class="ghost" id="modalShare" data-i18n="stories.share">Copy link</button>
+          <button class="ghost" id="modalPrev" data-i18n="stories.prev">Previous</button>
+          <button class="primary" id="modalNext" data-i18n="stories.next">Next story</button>
+        </div>
+      </footer>
+    </article>
+  </dialog>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <footer>
+    <p><strong data-i18n="footer.motto">Strong regions. Strong cities. Strong Europe.</strong></p>
+    <p data-i18n="footer.note">Interactive editorial prototype based on the EU Annual Report 2026.</p>
+    <a href="#top" data-i18n="footer.top">Back to top</a>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
