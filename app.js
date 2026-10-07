@@ -92,11 +92,20 @@ function bindSignals() {
 
 /* -------------------- Map (projection + pins) -------------------- */
 // Equirectangular projection for Europe within the viewBox 1000×720.
-const MAP_BOUNDS = { lngMin: -11, lngMax: 29, latMin: 35, latMax: 66 };
+// MUST match build-map.js so pins land on the right country.
+const MAP_BOUNDS = { lngMin: -11, lngMax: 32, latMin: 34, latMax: 71 };
 function project([lat, lng]) {
   const x = (lng - MAP_BOUNDS.lngMin) / (MAP_BOUNDS.lngMax - MAP_BOUNDS.lngMin) * 1000;
   const y = (MAP_BOUNDS.latMax - lat) / (MAP_BOUNDS.latMax - MAP_BOUNDS.latMin) * 720;
   return [x, y];
+}
+
+function renderLand() {
+  const layer = $('#landLayer');
+  if (!layer || typeof EUROPE_PATHS === 'undefined') return;
+  layer.innerHTML = EUROPE_PATHS.map(c =>
+    `<path d="${c.d}" class="${c.eu ? 'eu' : 'non-eu'}" data-iso="${c.iso}"><title>${c.name}</title></path>`
+  ).join('');
 }
 
 function renderMapChips() {
@@ -452,14 +461,36 @@ function handleHash() {
 
 /* -------------------- Mix slider -------------------- */
 function applyMix(v) {
+  v = +v;
   document.body.dataset.mix = v;
   const slider = $('#mixSlider');
+  slider.value = v;
   slider.style.setProperty('--p', v + '%');
   $('#mixValue').textContent = v;
-  const side = v < 40 ? 'central' : v > 60 ? 'place' : 'balanced';
+  const side = v < 35 ? 'central' : v > 65 ? 'place' : 'balanced';
   document.body.dataset.mixSide = side;
+
+  // Narrative line updates with the choice
+  const feel = $('#mixFeel');
+  if (feel) {
+    const msg = {
+      central:  { en:'Fast, uniform, far from the ground. Fewer voices, fewer colours on the map.',
+                  fr:'Rapide, uniforme, loin du terrain. Moins de voix, moins de couleurs sur la carte.' },
+      balanced: { en:'A working compromise — some reach, some proximity.',
+                  fr:'Un compromis de travail — un peu de portée, un peu de proximité.' },
+      place:    { en:'Twenty points of light. Slower, more voices, every territory contributes.',
+                  fr:'Vingt points de lumière. Plus lent, plus de voix, chaque territoire contribue.' }
+    };
+    feel.textContent = tx(msg[side]);
+  }
 }
 $('#mixSlider')?.addEventListener('input', e => applyMix(e.target.value));
+// Tap a side to snap to the extreme
+document.addEventListener('click', e => {
+  const card = e.target.closest('.mix-card');
+  if (!card) return;
+  applyMix(card.classList.contains('side-c') ? 0 : 100);
+});
 
 /* -------------------- Reading mode / audience -------------------- */
 function applyAudience(a) {
@@ -517,6 +548,7 @@ const io = new IntersectionObserver(
 /* -------------------- Full rerender (used on language change) -------------------- */
 function rerender() {
   renderSignals();
+  renderLand();
   renderMapChips();
   renderPins();
   updatePins();

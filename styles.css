@@ -175,21 +175,37 @@ p{margin:0 0 .5em}
 .map-section{position:relative}
 .map-wrap{display:grid;gap:1rem}
 .map-stage{
-  position:relative;background:#fff;border-radius:28px;overflow:hidden;
+  position:relative;
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(0,163,166,.08), transparent 60%),
+    radial-gradient(ellipse at 30% 70%, rgba(240,123,0,.06), transparent 60%),
+    #fff;
+  border-radius:28px;overflow:hidden;
   box-shadow:var(--shadow);padding:1rem;
-  aspect-ratio: 10/7.2;max-height:800px
+  aspect-ratio: 10/7.2;max-height:820px
 }
 #europeMap{width:100%;height:100%;display:block}
-.eu-land path{fill:#e5ded2;stroke:#c7bfae;stroke-width:1.5;transition:fill .3s}
-body.high-contrast .eu-land path{fill:#eee;stroke:#000}
 
-.pin{cursor:pointer;transition:transform .2s}
+/* Real country shapes: EU in warm cream, non-EU in muted grey */
+.eu-land path{stroke-width:.8;transition:fill .4s,stroke .4s,opacity .4s;cursor:default}
+.eu-land path.eu{fill:#e8dfc8;stroke:#c7b991}
+.eu-land path.non-eu{fill:#ebe9e3;stroke:#d0cdc5;opacity:.6}
+.eu-land path:hover{fill:#f3ead3}
+body.high-contrast .eu-land path.eu{fill:#eee;stroke:#000}
+body.high-contrast .eu-land path.non-eu{fill:#f6f6f6;stroke:#666}
+
+/* Centralised mode: desaturate the map to make the point */
+body[data-mix-side=central] .eu-land path.eu{fill:#dcdcd4;stroke:#b5b5ad}
+body[data-mix-side=central] .eu-land path.non-eu{fill:#ececec;stroke:#ccc}
+
+.pin{cursor:pointer;transition:transform .25s}
 .pin:hover,.pin:focus{outline:none}
-.pin:hover .pin-core,.pin:focus .pin-core{transform:scale(1.3)}
-.pin-glow{opacity:.35}
-.pin-core{transform-origin:center;transition:transform .2s}
-.pin-ring{fill:none;stroke-width:2;opacity:.55}
-.pin.dim{opacity:.15}
+.pin:hover .pin-core,.pin:focus .pin-core{transform:scale(1.4)}
+.pin-glow{opacity:.4;transition:opacity .4s}
+.pin-core{transform-origin:center;transition:transform .25s,fill .4s}
+.pin-ring{fill:none;stroke-width:2;opacity:.6;transition:opacity .4s}
+.pin.dim{opacity:.12}
+.pin.dim .pin-glow{opacity:0}
 
 .map-tip{
   position:absolute;background:var(--ink);color:#fff;padding:.6rem .8rem;border-radius:12px;
@@ -278,34 +294,55 @@ body.high-contrast .eu-land path{fill:#eee;stroke:#000}
 
 /* -------------------- Choice / mix slider -------------------- */
 .choices{padding-top:2rem}
-.mix{display:grid;grid-template-columns:1fr 2fr 1fr;align-items:center;gap:1.5rem;margin-bottom:2rem}
-.mix-card{background:#fff;padding:1.5rem;border-radius:24px;transition:all .3s;min-height:200px;box-shadow:var(--shadow-sm)}
+.mix{display:grid;grid-template-columns:1fr 2fr 1fr;align-items:stretch;gap:1.5rem;margin-bottom:2rem}
+.mix-card{
+  background:#fff;padding:1.5rem;border-radius:24px;transition:all .35s cubic-bezier(.4,0,.2,1);
+  min-height:200px;box-shadow:var(--shadow-sm);cursor:pointer;
+  border:3px solid transparent;position:relative;overflow:hidden
+}
+.mix-card:hover{transform:translateY(-3px)}
 .mix-card span{display:block;text-transform:uppercase;letter-spacing:.1em;font-size:.75rem;font-weight:900;color:var(--teal);margin-bottom:.5rem}
 .mix-card h3{font-size:1.4rem;margin-bottom:.6rem}
-.side-c{border:2px solid transparent}
-.side-p{border:2px solid transparent;background:var(--teal);color:#fff}
-.side-p span{color:rgba(255,255,255,.8)}
-body[data-mix="0"] .side-c,body:not([data-mix="100"]) .side-c.active{border-color:var(--ink);transform:scale(1.03)}
-body[data-mix="100"] .side-p,body:not([data-mix="0"]) .side-p.active{border-color:var(--gold);transform:scale(1.03)}
+.mix-card::after{content:"→ tap";position:absolute;bottom:1rem;right:1.2rem;font-size:.7rem;opacity:.4;font-weight:700}
+.side-c{background:#f3f4f3}
+.side-p{background:var(--teal);color:#fff}
+.side-p span,.side-p::after{color:rgba(255,255,255,.85)}
 
-.mix-slider{display:grid;gap:.75rem}
+/* Which side is dominant */
+body[data-mix-side=central] .side-c{border-color:var(--ink);transform:scale(1.05);box-shadow:var(--shadow)}
+body[data-mix-side=place]   .side-p{border-color:var(--gold);transform:scale(1.05);box-shadow:var(--shadow)}
+body[data-mix-side=central] .side-p,body[data-mix-side=place] .side-c{opacity:.55}
+
+.mix-slider{display:grid;gap:.75rem;align-content:center}
 .mix-slider input[type=range]{
-  -webkit-appearance:none;appearance:none;width:100%;height:16px;border-radius:999px;
-  background:linear-gradient(90deg,var(--c-security) 0%,var(--c-security) var(--p,60%),var(--teal) var(--p,60%),var(--teal) 100%);
-  outline:none;cursor:pointer
+  -webkit-appearance:none;appearance:none;width:100%;height:18px;border-radius:999px;
+  background:linear-gradient(90deg,#8a95a0 0%,#8a95a0 var(--p,60%),var(--teal) var(--p,60%),var(--teal) 100%);
+  outline:none;cursor:pointer;transition:background .3s
 }
-.mix-slider input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;background:#fff;border:4px solid var(--ink);border-radius:50%;cursor:grab;box-shadow:var(--shadow)}
-.mix-slider input[type=range]::-moz-range-thumb{width:32px;height:32px;background:#fff;border:4px solid var(--ink);border-radius:50%;cursor:grab;box-shadow:var(--shadow)}
-.mix-labels{display:flex;justify-content:space-between;font-weight:800;font-size:.85rem}
-.mix-labels .mix-value{color:var(--teal)}
-.mix-labels .mix-value strong{font-size:1.4rem}
-.mix-fill{display:none}
+.mix-slider input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:36px;height:36px;background:#fff;border:5px solid var(--ink);border-radius:50%;cursor:grab;box-shadow:var(--shadow)}
+.mix-slider input[type=range]::-moz-range-thumb{width:36px;height:36px;background:#fff;border:5px solid var(--ink);border-radius:50%;cursor:grab;box-shadow:var(--shadow)}
+.mix-labels{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:.85rem;gap:1rem}
+.mix-labels .mix-value{color:var(--teal);white-space:nowrap}
+.mix-labels .mix-value strong{font-size:1.5rem}
+.mix-feel{text-align:center;font-size:1rem;font-weight:700;margin:.5rem 0 0;min-height:3em;line-height:1.3;color:var(--ink);transition:color .3s}
+body[data-mix-side=central] .mix-feel{color:var(--c-security)}
+body[data-mix-side=place] .mix-feel{color:var(--teal)}
 
-/* Live effect: when centralised dominates, pulse section looks grey */
-body[data-mix-side=central] .signal strong.v{color:var(--c-security)}
-body[data-mix-side=central] .story::before{background:var(--c-security)!important}
-body[data-mix-side=central] .pin-core{filter:saturate(.3)}
-body[data-mix-side=place] .theme-stat{filter:none}
+/* ===== THE BIG EFFECT: centralised mode drains colour from the whole page ===== */
+body[data-mix-side=central] .section:not(.choices):not(.dark){
+  filter:saturate(.15);transition:filter .5s
+}
+body[data-mix-side=central] .hero{filter:saturate(.4)}
+body[data-mix-side=central] .manifesto p{opacity:.4}
+body[data-mix-side=central] .signal{box-shadow:0 10px 30px rgba(0,0,0,.06)}
+
+/* Place-based mode: the opposite — colours pop, pins radiate */
+body[data-mix-side=place] .pin-core{filter:drop-shadow(0 0 6px currentColor)}
+body[data-mix-side=place] .pin-glow{opacity:.6}
+body[data-mix-side=place] .signal{box-shadow:0 24px 70px rgba(3,44,53,.18)}
+body[data-mix-side=place] .mix-slider input[type=range]{box-shadow:0 0 0 6px rgba(0,116,123,.15)}
+
+.section{transition:filter .5s}
 
 .asks{background:var(--ink);color:#fff;padding:clamp(1.5rem,4vw,2.5rem);border-radius:28px}
 .asks h3{font-size:1.4rem;margin-bottom:1rem;color:var(--gold)}

@@ -179,33 +179,8 @@
               <filter id="softShadow"><feGaussianBlur stdDeviation="4" in="SourceAlpha"/><feOffset dy="2"/><feComponentTransfer><feFuncA type="linear" slope="0.25"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
             </defs>
 
-            <!-- Stylised Europe backdrop (simplified silhouettes) -->
-            <g class="eu-land" filter="url(#softShadow)">
-              <!-- Iberia -->
-              <path d="M165,470 Q140,440 155,400 Q180,370 230,375 Q275,370 305,395 Q330,420 320,460 Q300,500 260,515 Q210,520 185,500 Z"/>
-              <!-- France -->
-              <path d="M310,340 Q295,310 320,290 Q360,275 410,285 Q450,295 465,330 Q475,370 455,410 Q420,440 370,440 Q335,430 315,395 Z"/>
-              <!-- UK -->
-              <path d="M275,210 Q265,180 285,160 Q310,150 325,175 Q335,205 325,245 Q310,280 285,275 Q265,250 275,210 Z"/>
-              <!-- Ireland -->
-              <path d="M220,220 Q210,200 225,185 Q250,180 258,205 Q260,235 240,245 Q220,240 220,220 Z"/>
-              <!-- Benelux -->
-              <path d="M405,275 Q425,260 445,275 Q450,295 435,305 Q415,305 405,290 Z"/>
-              <!-- Germany + Denmark base -->
-              <path d="M450,245 Q470,215 500,215 Q540,220 555,255 Q560,295 540,320 Q500,335 475,320 Q455,295 450,270 Z"/>
-              <!-- Italy -->
-              <path d="M490,370 Q480,350 495,335 Q515,340 525,365 Q545,400 560,440 Q575,490 590,520 Q585,545 565,540 Q540,510 520,470 Q500,430 490,395 Z"/>
-              <!-- Scandinavia -->
-              <path d="M510,80 Q490,55 520,45 Q560,45 580,80 Q605,135 600,180 Q585,220 565,210 Q540,180 525,145 Q510,110 510,80 Z"/>
-              <!-- Poland + CZ + SK + Baltics -->
-              <path d="M565,235 Q600,215 650,220 Q700,230 725,255 Q720,295 695,315 Q650,325 610,315 Q575,295 565,265 Z"/>
-              <!-- Hungary + Balkans -->
-              <path d="M580,335 Q615,320 660,330 Q695,345 695,375 Q680,415 645,420 Q610,415 585,395 Z"/>
-              <!-- Greece -->
-              <path d="M660,450 Q680,440 710,445 Q720,470 700,495 Q675,500 660,480 Z"/>
-              <!-- Romania + Bulgaria -->
-              <path d="M700,355 Q740,345 790,360 Q805,390 785,415 Q740,420 710,405 Q695,385 700,370 Z"/>
-            </g>
+            <!-- Real country shapes injected by JS from europe-paths.js -->
+            <g id="landLayer" class="eu-land" filter="url(#softShadow)" aria-hidden="true"></g>
 
             <!-- Pins rendered by JS -->
             <g id="pinLayer" aria-label="Story pins"></g>
@@ -312,7 +287,7 @@
             <span class="mix-value"><strong id="mixValue">60</strong>% place-based</span>
             <span data-i18n="choice.placebased">Place-based</span>
           </div>
-          <div class="mix-fill"><span id="mixFill"></span></div>
+          <p id="mixFeel" class="mix-feel" aria-live="polite"></p>
         </div>
 
         <article class="mix-card side-p">
@@ -393,6 +368,7 @@
   </footer>
 
   <script src="data.js"></script>
+  <script src="europe-paths.js"></script>
   <script src="i18n.js"></script>
   <script src="app.js"></script>
 </body>
